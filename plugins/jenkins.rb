@@ -29,7 +29,12 @@ module Jenkins
     end
 
     def url
-      "http://#{Basil::Config.jenkins['host']}#{path}"
+        if Basil::Config.jenkins['port'] == 80
+    	    "http://#{Basil::Config.jenkins['host']}#{path}"
+    	else
+    	    "http://#{Basil::Config.jenkins['host']}:#{Basil::Config.jenkins['port']}#{path}"
+    	end
+
     end
 
     def json
